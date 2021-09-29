@@ -6,5 +6,6 @@ RUN apt update
 
 RUN apt -y install librdf0 raptor2-utils rasqal-utils curl python
 
+COPY . /code
 
 CMD ["bash"]
