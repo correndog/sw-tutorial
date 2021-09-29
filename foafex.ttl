@@ -1,0 +1,14 @@
+@prefix  foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix  :  <http://example.org/> .
+
+:x    foaf:name   "Alice" ;
+      foaf:knows  :y ,  :z ;
+      foaf:workplaceHomepage <https://www.elsevier.com/>.
+
+:y    foaf:name   "Bob" ;
+      foaf:knows  :z ;
+      foaf:workplaceHomepage <https://www.elsevier.com/>.
+
+:z    foaf:name   "Clare" ;
+      foaf:nick   "CT" ;
+      foaf:workplaceHomepage <https://www.relx.com/>.

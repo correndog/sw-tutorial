@@ -1,0 +1,1431 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ebs: <http://www.elsevier.com/xml/schema/rdf/EMMeTBasicSatellite-1/> .
+@prefix eds: <http://www.elsevier.com/xml/schema/rdf/EMMeTDomainSatellite-1/> .
+@prefix emloc: <http://data.elsevier.com/vocabulary/EMMeT/locrel/> .
+@prefix emst: <http://www.elsevier.com/xml/schema/rdf/EGVSatelliteTagging-1/> .
+@prefix epr: <http://www.elsevier.com/xml/schema/rdf/EMMeTProvenanceSatellite-1/> .
+@prefix pav: <http://purl.org/swan/pav/provenance/> .
+@prefix prism: <http://prismstandard.org/namespaces/basic/2.0/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sat: <http://www.elsevier.com/xml/schema/rdf/LDR-Satellites/Base-1/> .
+@prefix semrel: <http://data.elsevier.com/EMMeT/SemRelations/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+@prefix sksme: <http://synaptica.net/skm/subElement/> .
+@prefix svf: <http://www.elsevier.com/xml/schema/grant/grant-1.2/> .
+
+<https://data.elsevier.com/schema/edm/> a <http://www.w3.org/2002/07/owl#Ontology>;
+  dcterms:created "2018-02-18";
+  dcterms:description "The Enterprise Data Model (EDM) is a fundamental component of the reference architecture of the enterprise and a part of the URA (Unified reference Architecture). It sets the foundation for a data ecosystem that aims to spans the whole of Elsevier, to enable connectivity and insight, and help value to be achieved.  The EDM establish a core set of entity types for across the organisation in a consistent manner such as People and Organisations, and foundational business and product concepts such as Product, Customer. Author and Editor.  The EDM seeks only to include abstractions of the key relationships and properties, and not to represent the full complexity of all possible scenarios. The Enterprise Data Model does not include highly specialised entity types that are only of interest to a very specific domain (e.g. Bioassay), instead these are expected to be included in domain models, which are mapped to the EDM. The EDM also seeks to provide the upper ontology that connects data silos, leading towards a Linked Data view of the enterprise and enterprise data.";
+  dcterms:modified "2019-07-11";
+  dcterms:source "https://confluence.cbsels.com/display/arch/Enterprise+Data+Model";
+  <http://purl.org/vocab/vann/preferredNamespacePrefix> "edm";
+  <http://purl.org/vocab/vann/preferredNamespaceUri> "https://data.elsevier.com/schema/edm/";
+  rdfs:label "Elsevier Enterprise Data Model (EDM)";
+  <http://www.w3.org/2002/07/owl#priorVersion> "https://data.elsevier.com/schema/edm/1.1/";
+  <http://www.w3.org/2002/07/owl#versionIRI> "https://data.elsevier.com/schema/edm/1.2/";
+  <http://www.w3.org/2002/07/owl#versionInfo> "v1.2";
+  <http://www.w3.org/ns/dcat#keyword> "Top ontology", "URA";
+  <http://www.w3.org/ns/dcat#theme> "Architecture" .
+
+<http://schema.org/domainIncludes> a <http://www.w3.org/2002/07/owl#AnnotationProperty>;
+  <http://schema.org/domainIncludes> <http://schema.org/Property>;
+  <http://schema.org/isPartOf> <http://meta.schema.org/>;
+  <http://schema.org/rangeIncludes> <http://schema.org/Class>;
+  rdfs:comment "Relates a property to a class that is (one of) the type(s) the property is expected to be used on.";
+  rdfs:label "domainIncludes" .
+
+<http://schema.org/Property> a <http://www.w3.org/2002/07/owl#Class>;
+  <http://schema.org/isPartOf> <http://meta.schema.org/>;
+  rdfs:comment "A property, used to indicate attributes and relationships of some Thing; equivalent to rdf:Property.";
+  rdfs:label "Property";
+  rdfs:subClassOf <http://schema.org/Intangible> .
+
+<http://schema.org/Intangible> a <http://www.w3.org/2002/07/owl#Class> .
+
+<http://schema.org/Class> a <http://www.w3.org/2002/07/owl#Class>;
+  <http://schema.org/isPartOf> <http://meta.schema.org/>;
+  rdfs:comment "A class, also often called a 'Type'; equivalent to rdfs:Class.";
+  rdfs:label "Class";
+  rdfs:subClassOf <http://schema.org/Intangible> .
+
+<http://schema.org/rangeIncludes> a <http://www.w3.org/2002/07/owl#AnnotationProperty>;
+  <http://schema.org/domainIncludes> <http://schema.org/Property>;
+  <http://schema.org/isPartOf> <http://meta.schema.org/>;
+  <http://schema.org/rangeIncludes> <http://schema.org/Class>;
+  rdfs:comment "Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.";
+  rdfs:label "rangeIncludes" .
+
+<https://data.elsevier.com/schema/edm/abstract> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The summary of the Work.";
+  rdfs:label "abstract";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/description> .
+
+<https://data.elsevier.com/schema/edm/Work> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An article, book or other similar creative item.  A Work can take many different forms including a wide variety of articles, images, and data sets.  Works can span a wide range of sizes, from small digests, through to multi-part constructs like encyclopedias and journals. Works can be offered for sale as a part of a Product.";
+  rdfs:label "Work";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/Thing> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A superclass entity for the Enterprise Data Model, not intended to be directly used as a class.";
+  rdfs:label "Thing" .
+
+<https://data.elsevier.com/schema/edm/description> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "A description associated with an entity.";
+  rdfs:label "description";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/acronym> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  rdfs:comment "The acronym of an Organization.";
+  rdfs:label "acronym";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/label> .
+
+<https://data.elsevier.com/schema/edm/Organization> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Any level of Organization engaged in many different ways from purchasing Products, involvement in creating Works either directly or indirectly - such as by providing funding or setting regulations.  An Organization may have relationships with other Organizations and with Persons.";
+  rdfs:label "Organization";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Actor> .
+
+<https://data.elsevier.com/schema/edm/Actor> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Super-class of entities, such as Person and Organisation or a Software Agent, that may have legal rights, and/or a legal existence, and can undertake a Role.";
+  rdfs:label "Actor";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/label> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The label associated with the entity.";
+  rdfs:label "label";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/adverseEffectOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Drug>;
+  rdfs:comment "The MedicalCondition is the adverse effect or side effect of the Drug.";
+  rdfs:label "adverse effect of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasAdverseEffect> .
+
+<https://data.elsevier.com/schema/edm/MedicalCondition> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A condition affecting the functioning of the (human) body whether mentally or physically.";
+  rdfs:label "Medical Condition";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/Drug> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Any substance or combination of substances that is used or studied for some intentional pharmacological effect; administered as an aid in the diagnosis, treatment, or prevention of disease or other abnormal condition, for the relief of pain or suffering, to control or improve any physiologic or pathologic condition or that alters the function of the body.";
+  rdfs:label "Drug";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/hasAdverseEffect> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Drug>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  rdfs:comment "The Drug has as adverse effect (side effect) the MedicalCondition.";
+  rdfs:label "has adverse effect" .
+
+<https://data.elsevier.com/schema/edm/affiliationOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The Organization is linked to the Person without transferring entitlements to that Person.";
+  rdfs:label "affiliation of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasAffiliation> .
+
+<https://data.elsevier.com/schema/edm/Person> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An individual human being.  A Person can be engaged in many different ways, from using and purchasing Products, or being a potential user of Products, through being involved in the process of creating Works, having various relationships with other People and Organizations, to being a significant individual in their field.";
+  rdfs:label "Person";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Actor> .
+
+<https://data.elsevier.com/schema/edm/hasAffiliation> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  rdfs:comment "The Person is linked to the Organization without transfer of entitlements from that given Organization.";
+  rdfs:label "has affiliation" .
+
+<https://data.elsevier.com/schema/edm/alternateLabel> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "An alternate label for the entity.";
+  rdfs:label "alternate label";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/label> .
+
+<https://data.elsevier.com/schema/edm/alternateName> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>, <https://data.elsevier.com/schema/edm/Product>;
+  rdfs:comment "An alternate name for the Actor or Product.";
+  rdfs:label "alternate name";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/name> .
+
+<https://data.elsevier.com/schema/edm/Product> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Marketable Works and Services that are offered for purchase to multiple Persons and Organizations (Customers). Products drive the revenue that enables the company to be successful.";
+  rdfs:label "Product";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/name> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>, <https://data.elsevier.com/schema/edm/Product>;
+  rdfs:comment "The name of an Actor or Product.";
+  rdfs:label "name";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/label> .
+
+<https://data.elsevier.com/schema/edm/associatedAnatomy> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/AnatomicalStructure>;
+  rdfs:comment "The MedicalCondition is connected to the AnatomicalStructure.";
+  rdfs:label "associated anatomy";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/relatedCondition> .
+
+<https://data.elsevier.com/schema/edm/AnatomicalStructure> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Any part of a body, typically a component of an anatomical system including organs, tissues, and cells.";
+  rdfs:label "Anatomical Structure";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/relatedCondition> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/AnatomicalStructure>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  rdfs:comment "The AnatomicalStructure has a MedicalCondition associated with it. For instance the head is linked to headache.";
+  rdfs:label "related condition" .
+
+<https://data.elsevier.com/schema/edm/associatedWith> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  rdfs:comment "The Person or Organization is linked to the Organization with transfer of entitlements from the Organization.";
+  rdfs:label "associated with";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasAssociation> .
+
+<https://data.elsevier.com/schema/edm/hasAssociation> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The Organization linked to the Organization or Person with transfer of entitlement.";
+  rdfs:label "has association" .
+
+<https://data.elsevier.com/schema/edm/authorOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Person is the Author of the Work.";
+  rdfs:label "author of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasAuthor> .
+
+<https://data.elsevier.com/schema/edm/hasAuthor> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The Work is authored by a Person.";
+  rdfs:label "has author" .
+
+<https://data.elsevier.com/schema/edm/availableOnlineDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The date the Work was made available online for the first time. The availableOnlineDate may apply to any Work including those that have not been, and may never be, formally published by a publisher such as WorkingPapers.";
+  rdfs:label "available online date";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#dateTime>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/date> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The date associated with the entity.";
+  rdfs:label "date";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#dateTime>;
+  rdfs:subPropertyOf <http://www.w3.org/2002/07/owl#topDataProperty> .
+
+<https://data.elsevier.com/schema/edm/awardedTo> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/GrantAward>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The GrantAward is awarded to a Person or Organization.";
+  rdfs:label "awarded to";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasAward> .
+
+<https://data.elsevier.com/schema/edm/GrantAward> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An agreement where a monetary resource is issued to a person or organization by another funding person or organization to perform research activities, often for a particular project. The award document would be a work.";
+  rdfs:label "Grant Award";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Agreement> .
+
+<https://data.elsevier.com/schema/edm/Agreement> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A negotiated and typically legally binding arrangement between Actors as to a course of action.";
+  rdfs:label "Agreement";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/hasAward> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/GrantAward>;
+  rdfs:comment "The entity is awarded a GrantAward.";
+  rdfs:label "has award" .
+
+<https://data.elsevier.com/schema/edm/birthDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The date a Person was born.";
+  rdfs:label "birthdate";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#dateTime>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/brand> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Product>;
+  rdfs:comment "The brand associated with the Product.";
+  rdfs:label "brand";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/name> .
+
+<https://data.elsevier.com/schema/edm/commentOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Comment>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Comment is associated with the Work or a particular segment of the Work.";
+  rdfs:label "comment of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasComment> .
+
+<https://data.elsevier.com/schema/edm/Comment> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A Comment is a collection of written notes or highlights pertaining to a Work that are associated with particular locations in the text. Note that the term comment is used to distinguish from annotations associating content with taxonomies or classifications.";
+  rdfs:label "Comment";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/hasComment> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Comment>;
+  rdfs:comment "The Work or a segment of the Work has an associated Comment.";
+  rdfs:label "has Comment";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/commentOf> .
+
+<https://data.elsevier.com/schema/edm/contextOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Agreement>,
+    <https://data.elsevier.com/schema/edm/Role>;
+  rdfs:comment "The entity provides context for the Agreement or Role.";
+  rdfs:label "context of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasContext> .
+
+<https://data.elsevier.com/schema/edm/Role> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A function performed by an Actor in Relation to a Work or an Activity.";
+  rdfs:label "Role";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/hasContext> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Agreement>,
+    <https://data.elsevier.com/schema/edm/Role>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The Agreement or Role is the context for the entity.";
+  rdfs:label "has context" .
+
+<https://data.elsevier.com/schema/edm/contraIndicationOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/MedicalProcedure>;
+  rdfs:comment "The MedicalCondition is an indication that the Drug or MedicalProcedure should not be used.";
+  rdfs:label "contraindication of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasContraIndication> .
+
+<https://data.elsevier.com/schema/edm/MedicalProcedure> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A series of steps by which a desired medical outcome is ideally accomplished.";
+  rdfs:label "Medical Procedure";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/hasContraIndication> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/MedicalProcedure>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  rdfs:comment "The Drug or MedicalProcedure should not be used for this MedicalCondition.";
+  rdfs:label "has contraindication" .
+
+<https://data.elsevier.com/schema/edm/copyrightLine> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The copyright line of the Work.";
+  rdfs:label "copyright line";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <http://www.w3.org/2002/07/owl#topDataProperty> .
+
+<https://data.elsevier.com/schema/edm/copyrightYear> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The copyright year of the Work.";
+  rdfs:label "copyright year";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#dateTime>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/creatorOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Actor is the creator of the Work.";
+  rdfs:label "creator of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasCreator> .
+
+<https://data.elsevier.com/schema/edm/hasCreator> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "The Actor is the creator of the Work.";
+  rdfs:label "has creator" .
+
+<https://data.elsevier.com/schema/edm/derivedFrom> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "A Work is derived from another Work.";
+  rdfs:label "derived from";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasDerivation> .
+
+<https://data.elsevier.com/schema/edm/hasDerivation> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "A Work has derivations.";
+  rdfs:label "has derivation" .
+
+<https://data.elsevier.com/schema/edm/deviceUsed> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/MedicalDevice>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/MedicalProcedure>,
+    <https://data.elsevier.com/schema/edm/Role>;
+  rdfs:comment "MedicalDevice used in MedicalProcedure or Role.";
+  rdfs:label "device used";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/usesDevice> .
+
+<https://data.elsevier.com/schema/edm/MedicalDevice> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An instrument, apparatus, implant, in vitro reagent, or other similar item, or accessory which is intended for use in the diagnosis of disease or other conditions, or in the cure, mitigation, treatment, or prevention of disease, in human or other animals which does not achieve its primary intended purposes through chemical action.";
+  rdfs:label "Medical Device";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/usesDevice> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/MedicalProcedure>,
+    <https://data.elsevier.com/schema/edm/Role>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/MedicalDevice>;
+  rdfs:comment "The MedicalProcedure, or Role uses MedicalDevice.";
+  rdfs:label "uses device" .
+
+<https://data.elsevier.com/schema/edm/doi> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "Digital Object Identifier or DOI is a persistent resolvable identifier used to identify objects such as journal articles, research data and reviews.";
+  rdfs:label "doi";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/identifier> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The identifier contains any kind of identifier used to represent the specific entity. Note that the identifier must be used for identifiers that represent the entity and not identifiers that represent its containers or parts. For example: the edm:isbn attribute applies to a book therefore the chapter of a book should not have edm:isbn amongst its attributes.";
+  rdfs:label "identifier";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/editorOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Person is an Editor of the Work.";
+  rdfs:label "editor of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasEditor> .
+
+<https://data.elsevier.com/schema/edm/hasEditor> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The Work is edited by a Person.";
+  rdfs:label "has editor" .
+
+<https://data.elsevier.com/schema/edm/endDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Agreement>, <https://data.elsevier.com/schema/edm/Relationship>,
+    <https://data.elsevier.com/schema/edm/Role>;
+  rdfs:comment "The end date associated with the entity.";
+  rdfs:label "end date";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#dateTime>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/Activity> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An undertaking by one or more Actors, with a specific purpose, usually over a defined period of time.";
+  rdfs:label "Activity";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/Relationship> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Super-class of entities, including Association and Affiliation, that describe a relationship between Entities with defined semantics.";
+  rdfs:label "Relationship";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/familyName> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The family name of a Person.";
+  rdfs:label "family name";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/name> .
+
+<https://data.elsevier.com/schema/edm/follows> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "An Actor follows the output and actions of another Actor.";
+  rdfs:label "follows";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasFollower> .
+
+<https://data.elsevier.com/schema/edm/hasFollower> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "An Actor is followed by another Actor.";
+  rdfs:label "has follower" .
+
+<https://data.elsevier.com/schema/edm/funds> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/GrantAward>, <https://data.elsevier.com/schema/edm/GrantOpportunity>,
+    <https://data.elsevier.com/schema/edm/Organization>, <https://data.elsevier.com/schema/edm/Person>,
+    <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "An Organization or a Person funds another entity by providing financial contribution.";
+  rdfs:label "funds";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/hasFunder> .
+
+<https://data.elsevier.com/schema/edm/GrantOpportunity> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A monetary resource persons may apply for, which has conditions applicants must adhere to to receive funding.";
+  rdfs:label "Grant Opportunity";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Agreement> .
+
+<https://data.elsevier.com/schema/edm/hasFunder> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/GrantAward>, <https://data.elsevier.com/schema/edm/GrantOpportunity>,
+    <https://data.elsevier.com/schema/edm/Organization>, <https://data.elsevier.com/schema/edm/Person>,
+    <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The entity is funded by an Organization or Person.";
+  rdfs:label "has funder" .
+
+<https://data.elsevier.com/schema/edm/givenName> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The given name of a Person.";
+  rdfs:label "given name";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/name> .
+
+<https://data.elsevier.com/schema/edm/hasIndication> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/MedicalProcedure>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  rdfs:comment "The use of the Drug or MedicalProcedure is indicated for this MedicalCondition.";
+  rdfs:label "has indication";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/indicationOf> .
+
+<https://data.elsevier.com/schema/edm/indicationOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/MedicalCondition>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/MedicalProcedure>;
+  rdfs:comment "The MedicalCondition is a basis of indication to prescribe the Drug or the MedicalProcedure.";
+  rdfs:label "indication of" .
+
+<https://data.elsevier.com/schema/edm/hasMember> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Group>, <https://data.elsevier.com/schema/edm/Organization>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The Group or Organization has Person as Member.";
+  rdfs:label "has member";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/memberOf> .
+
+<https://data.elsevier.com/schema/edm/Group> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A grouping of multiple Persons and/or Organizations where the group is a non-legal entity.";
+  rdfs:label "Group";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Actor> .
+
+<https://data.elsevier.com/schema/edm/memberOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Group>, <https://data.elsevier.com/schema/edm/Organization>;
+  rdfs:comment "The Person is a member of a Group or Organization.", "member of" .
+
+<https://data.elsevier.com/schema/edm/hasOutcome> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/GrantAward>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Activity or GrantAward has a Work as outcome. For example, an article describing the outcomes of an experiment.";
+  rdfs:label "has outcome";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/outcomeOf> .
+
+<https://data.elsevier.com/schema/edm/outcomeOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/GrantAward>;
+  rdfs:comment "The Work is the outcome of an Activity or GrantAward.";
+  rdfs:label "outcome of" .
+
+<https://data.elsevier.com/schema/edm/hasPart> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The entity has another entity as its part.";
+  rdfs:label "has part";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/partOf> .
+
+<https://data.elsevier.com/schema/edm/partOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The entity is part of another entity.";
+  rdfs:label "part of" .
+
+<https://data.elsevier.com/schema/edm/hasParticipant> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Agreement>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "The Activity or Agreement has participants.";
+  rdfs:label "has participant";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/participates> .
+
+<https://data.elsevier.com/schema/edm/participates> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Agreement>;
+  rdfs:comment "The Actor participates in an Activity or Agreement.";
+  rdfs:label "participates" .
+
+<https://data.elsevier.com/schema/edm/hasPublisher> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  rdfs:comment "The Work is published by an Organization.";
+  rdfs:label "has publisher";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/publisherOf> .
+
+<https://data.elsevier.com/schema/edm/publisherOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Organization is the publisher of the Work.";
+  rdfs:label "publisher of" .
+
+<https://data.elsevier.com/schema/edm/hasReview> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Review>;
+  rdfs:comment "The Work is associated with its Review.";
+  rdfs:label "has review";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/reviewOf> .
+
+<https://data.elsevier.com/schema/edm/Review> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A critique of a Work written by a Reviewer.";
+  rdfs:label "Review";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/reviewOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Review>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Review associated with the reviewed Work.";
+  rdfs:label "review of" .
+
+<https://data.elsevier.com/schema/edm/hasReviewer> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The Work is associated with the Person who performed the Review.";
+  rdfs:label "has reviewer";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/reviewerOf> .
+
+<https://data.elsevier.com/schema/edm/reviewerOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Person who performed the Review associated with the reviewed Work.";
+  rdfs:label "reviewer of" .
+
+<https://data.elsevier.com/schema/edm/hasRole> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Role>;
+  rdfs:comment "The Actor has a particular Role.";
+  rdfs:label "has role";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/roleOf> .
+
+<https://data.elsevier.com/schema/edm/roleOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>, <https://data.elsevier.com/schema/edm/Role>;
+  rdfs:comment "The Role associated with the Actor.";
+  rdfs:label "role of" .
+
+<https://data.elsevier.com/schema/edm/hasSchema> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Dataset>,
+    <https://data.elsevier.com/schema/edm/Vocabulary>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Schema>;
+  rdfs:comment "The Dataset, or Vocabulary is based on the Schema.";
+  rdfs:label "has schema";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/schemaOf> .
+
+<https://data.elsevier.com/schema/edm/Dataset> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A collection of related sets of information that is composed of separate elements but can be manipulated as a unit by a computer.";
+  rdfs:label "Dataset";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/Vocabulary> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A collection of Concepts, also called Knowledge Organizing System (KOS) that may include hierarchies and relations between Concepts.";
+  rdfs:label "Vocabulary";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/Schema> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A data structure described in a formal language that may include constraints that the underlying data (in a DataSet) must fulfil.";
+  rdfs:label "Schema";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/schemaOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Schema>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Dataset>,
+    <https://data.elsevier.com/schema/edm/Vocabulary>;
+  rdfs:comment "The Schema is associated with the work most notably for Vocabularies or Datasets.";
+  rdfs:label "schema of" .
+
+<https://data.elsevier.com/schema/edm/hasSubject> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Concept>;
+  rdfs:comment "The entity has as Subject the Concept.";
+  rdfs:label "has subject";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/subjectOf> .
+
+<https://data.elsevier.com/schema/edm/Concept> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A class of Entities that classify other Entities, and the relationships between other Entities, so that similar and related Entities can be recognized, and to allow potential relationships to be deduced. The instances of this class are generally organised into vocabularies, taxonomies and list of values.";
+  rdfs:label "Concept";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/subjectOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Concept>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The Concept is associated with the entity as its Subject.";
+  rdfs:label "subject of" .
+
+<https://data.elsevier.com/schema/edm/honorific> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "Honorific or title associated with a Person.";
+  rdfs:label "honorific";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/label> .
+
+<https://data.elsevier.com/schema/edm/includedIn> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Service>,
+    <https://data.elsevier.com/schema/edm/Substance>, <https://data.elsevier.com/schema/edm/Thing>,
+    <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/Product>,
+    <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The entity of a given type is included in another entity of a given type. For example: a Work is included in a Product, a Substance is included in a Drug.";
+  rdfs:label "included in";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/includes> .
+
+<https://data.elsevier.com/schema/edm/Service> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A function or capability that can be performed. A Service can be offered for sale as a part of a Product.";
+  rdfs:label "Service";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/Substance> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A substance is a form of matter having broadly consistent chemical composition and characteristic properties whose origin may be biological, mineral or chemical.";
+  rdfs:label "Substance";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/includes> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/Product>,
+    <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Service>,
+    <https://data.elsevier.com/schema/edm/Substance>, <https://data.elsevier.com/schema/edm/Thing>,
+    <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The entity includes other types of entity(ies). For example: a Product includes Works or Services; Drug includes Substances.";
+  rdfs:label "includes";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/includedIn> .
+
+<https://data.elsevier.com/schema/edm/initials> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The initials of a Person.";
+  rdfs:label "initials";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/name> .
+
+<https://data.elsevier.com/schema/edm/isbn> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Book>;
+  rdfs:comment "The isbn of a Book. Note: If the entity is a Chapter use edm:partOfISBN to store the ISBN of the parent Book. This attribute is used to provide the identifier of the entity.";
+  rdfs:label "isbn";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/Book> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A Work containing a detailed exploration of a particular subject. Typically a long form Work containing a sequence of Chapters. Will be assigned an ISBN identifier.";
+  rdfs:label "Book";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/issn> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Journal>;
+  rdfs:comment "The issn of a Journal. Note: If the entity is an Article use edm:partOfISSN to store the ISSN of the parent Journal. This attribute is used to provide the identifier of the entity.";
+  rdfs:label "issn";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/Journal> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A periodical where the primary content is scholarly articles. It behaves as a container for Articles.";
+  rdfs:label "Journal";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/mayInteractWith> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Drug>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Drug>;
+  rdfs:comment "The Drug may interact with another Drug.";
+  rdfs:label "may interact with";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/mayInteractWith> .
+
+<https://data.elsevier.com/schema/edm/mentionedIn> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The entity is mentioned in the Work. For example an Experiment is described in an Article.";
+  rdfs:label "mentioned in";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/mentions> .
+
+<https://data.elsevier.com/schema/edm/mentions> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "he Work mentions the entity. For example an Article describes an Experiment.";
+  rdfs:label "mentions" .
+
+<https://data.elsevier.com/schema/edm/offeredBy> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Product>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "The Product is offered by an Actor.";
+  rdfs:label "offered by";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/offers> .
+
+<https://data.elsevier.com/schema/edm/offers> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Product>;
+  rdfs:comment "The Actor offers the Product.";
+  rdfs:label "offers" .
+
+<https://data.elsevier.com/schema/edm/orcid> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The orcid id of a Person.";
+  rdfs:label "orcid";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/originated> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Organization is the origin (through people creating or authoring) of a Work.";
+  rdfs:label "originated";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/originatedAt> .
+
+<https://data.elsevier.com/schema/edm/originatedAt> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  rdfs:comment "The Work is originated at an Organization (through people creating or authoring).";
+  rdfs:label "originated at" .
+
+<https://data.elsevier.com/schema/edm/pii> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "Elsevier specific identifier used for Works such as Article, Chapter and ConferenceContribution published by Elsevier.";
+  rdfs:label "pii";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/preferredLabel> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "The preferred label for an entity.";
+  rdfs:label "preferred label";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/label> .
+
+<https://data.elsevier.com/schema/edm/preferredName> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "The preferred name for an Actor, notably an Organization or a Person.";
+  rdfs:label "preferred name";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/name> .
+
+<https://data.elsevier.com/schema/edm/providedBy> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Service>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "The Service is provided by an Actor.";
+  rdfs:label "provided by";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/provides> .
+
+<https://data.elsevier.com/schema/edm/provides> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Service>;
+  rdfs:comment "The Actor provides a Service." .
+
+<https://data.elsevier.com/schema/edm/pui> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The identifier associated with the Work such as an Article, Chapter or ConferenceContribution in a form that doesn't include the main text of the Work. This identifier is used within Elsevier.";
+  rdfs:label "pui";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/purchasedBy> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Product>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment "The Product is purchased by an Organization or Person.";
+  rdfs:label "purchased by";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/purchases> .
+
+<https://data.elsevier.com/schema/edm/purchases> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>,
+    <https://data.elsevier.com/schema/edm/Person>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Product>;
+  rdfs:comment "The Organization or Person purchases a Product.";
+  rdfs:label "purchases" .
+
+<https://data.elsevier.com/schema/edm/referencedBy> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Work is referenced by another Work.";
+  rdfs:label "referenced by";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/references> .
+
+<https://data.elsevier.com/schema/edm/references> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The Work references another Work.";
+  rdfs:label "references" .
+
+<https://data.elsevier.com/schema/edm/relatedTo> a <http://www.w3.org/2002/07/owl#ObjectProperty>,
+    <http://www.w3.org/2002/07/owl#SymmetricProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "Generic relationship that exists between two entities.";
+  rdfs:label "related to";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/relatedTo> .
+
+<https://data.elsevier.com/schema/edm/releaseDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Product>;
+  rdfs:comment "The release date of a Product or product model.";
+  rdfs:label "release date";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#dateTime>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/ringgoldIdentifier> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Organization>;
+  rdfs:comment "The identifier of an organization in Ringgold.";
+  rdfs:label "ringgold identifier";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/startDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Agreement>, <https://data.elsevier.com/schema/edm/Relationship>,
+    <https://data.elsevier.com/schema/edm/Role>;
+  rdfs:comment "The start date associated with the entity.";
+  rdfs:label "start date";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#dateTime>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/targetedBy> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/DrugTarget>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Drug>;
+  rdfs:comment "The DrugTarget is targeted by the Drug.";
+  rdfs:label "targeted by";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/targets> .
+
+<https://data.elsevier.com/schema/edm/DrugTarget> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Anything within a living organism to which a drug is directed or binds to resulting in a change in its behavior or function.";
+  rdfs:label "Drug Target";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/targets> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Drug>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/DrugTarget>;
+  rdfs:comment "The Drug targets to the DrugTarget.";
+  rdfs:label "targets" .
+
+<https://data.elsevier.com/schema/edm/title> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The title of a Work such as a Book or a composition. Not to be confused with the honorific of a Person.";
+  rdfs:label "title";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string>;
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/label> .
+
+<https://data.elsevier.com/schema/edm/trialOf> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/MedicalDevice>,
+    <https://data.elsevier.com/schema/edm/MedicalProcedure>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/ClinicalTrial>;
+  rdfs:comment "The effect of the MedicalDevice, Drug or MedicalProcedure is studied in the ClinicalTrial.";
+  rdfs:label "trial of";
+  <http://www.w3.org/2002/07/owl#inverseOf> <https://data.elsevier.com/schema/edm/trialed> .
+
+<https://data.elsevier.com/schema/edm/ClinicalTrial> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Experiments performed in clinical research including trials of drugs, devices and procedures often regulated and requiring consent.";
+  rdfs:label "Clinical Trial";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/BiomedicalResearch> .
+
+<https://data.elsevier.com/schema/edm/BiomedicalResearch> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Research studies and experiments relating to human and veterinary medicine or health, including lab experiments, observational studies and interventional trials and registries, randomized, controlled or not.";
+  rdfs:label "Biomedical Research";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Experiment> .
+
+<https://data.elsevier.com/schema/edm/Experiment> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An experiment is a procedure carried out to support, refute, or validate a hypothesis or in order to investigate and explore phenomena.";
+  rdfs:label "Experiment";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Activity> .
+
+<https://data.elsevier.com/schema/edm/trialed> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/ClinicalTrial>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Drug>, <https://data.elsevier.com/schema/edm/MedicalDevice>,
+    <https://data.elsevier.com/schema/edm/MedicalProcedure>;
+  rdfs:comment "The ClinicalTrial is conducted to study the effect of a MedicalDevice, Drug or MedicalProcedure.";
+  rdfs:label "trialed" .
+
+<http://schema.org/inverseOf> <http://schema.org/domainIncludes> <http://schema.org/Property>;
+  <http://schema.org/isPartOf> <http://meta.schema.org/>;
+  <http://schema.org/rangeIncludes> <http://schema.org/Property>;
+  rdfs:comment "Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used.";
+  rdfs:label "inverseOf" .
+
+<http://schema.org/supersededBy> <http://schema.org/domainIncludes> <http://schema.org/Class>,
+    <http://schema.org/Enumeration>, <http://schema.org/Property>;
+  <http://schema.org/isPartOf> <http://meta.schema.org/>;
+  <http://schema.org/rangeIncludes> <http://schema.org/Class>, <http://schema.org/Enumeration>,
+    <http://schema.org/Property>;
+  rdfs:comment "Relates a term (i.e. a property, class or enumeration) to one that supersedes it.";
+  rdfs:label "supersededBy" .
+
+<https://data.elsevier.com/schema/edm/addressCountry> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/PostalAddress>;
+  rdfs:comment """The country used in postal addresses.
+For other uses of country please use edm:country""";
+  rdfs:label "address country";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/PostalAddress> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A collection of information such as city and street name used to describe the location associated with an entity.";
+  rdfs:label "Postal Address";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Location> .
+
+<https://data.elsevier.com/schema/edm/Location> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The geographic location expressed as a set of coordinates.";
+  rdfs:label "Location";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Thing> .
+
+<https://data.elsevier.com/schema/edm/locationLabel> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>;
+  rdfs:comment """The location as a piece of text where the Activity is held.
+Use the Location entity type when coordinates are separated out. See attributes that are linked with Location.""";
+  rdfs:label "location label" .
+
+<https://data.elsevier.com/schema/edm/addressLocality> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/PostalAddress>;
+  rdfs:comment "The locality such as the settlement name.";
+  rdfs:label "address locality";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/addressRegion> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/PostalAddress>;
+  rdfs:comment "The administrative region or area used in postal addresses.";
+  rdfs:label "address region";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/altitude> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Location>;
+  rdfs:comment "The height of a Thing above a reference level, especially above sea level or above the earth's surface.";
+  rdfs:label "altitude";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/casNumber> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Substance>;
+  rdfs:comment "A numerical identifier assigned by the Chemical Abstracts Service (CAS) to every chemical substance described in the open scientific literature.";
+  rdfs:label "CAS number";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/country> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment """The country associated with the entity.
+For postal addresses use edm:addressCountry.""";
+  rdfs:label "country";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/createdDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The date or time the Work was created.";
+  rdfs:label "created date";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/edition> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Book>;
+  rdfs:comment "The edition of the Book.";
+  rdfs:label "edition";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/emailAddress> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "The email address of a Person or Organization.";
+  rdfs:label "email address";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/endPage> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The end page of the Work such as an Article or Chapter as part of a larger Work such as a journal Issue or Book.";
+  rdfs:label "end page";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/format> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The format of an entity.";
+  rdfs:label "format";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/hasLocation> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/Location>;
+  rdfs:comment "The entity has a geographic location associated with it.";
+  rdfs:label "has location" .
+
+<https://data.elsevier.com/schema/edm/hasPostalAddress> a <http://www.w3.org/2002/07/owl#ObjectProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Organization>, <https://data.elsevier.com/schema/edm/Person>,
+    <https://data.elsevier.com/schema/edm/Thing>;
+  <http://schema.org/rangeIncludes> <https://data.elsevier.com/schema/edm/PostalAddress>;
+  rdfs:comment "The entity has a PostalAddress associated with it.";
+  rdfs:label "has postal address" .
+
+<https://data.elsevier.com/schema/edm/homePage> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Actor>;
+  rdfs:comment "The homepage of an entity or associated with an entity.";
+  rdfs:label "homepage";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#anyURI> .
+
+<https://data.elsevier.com/schema/edm/imprint> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The publisher imprint of the Work.";
+  rdfs:label "imprint";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/inchi> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Substance>;
+  rdfs:comment "The International Chemical Identifier (InChI) is a textual identifier for chemical Substances, designed to provide a standard way to encode molecular information and to facilitate the search for such information in databases and on the web.";
+  rdfs:label "InChI";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/inchiKey> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Substance>;
+  rdfs:comment "The hashed version of the International Chemical Identifier (InChI) used for Substances.";
+  rdfs:label "InChI key";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/language> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The language in which the Work is written.";
+  rdfs:label "language";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#language> .
+
+<https://data.elsevier.com/schema/edm/latitude> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Location>;
+  rdfs:comment "A geographic coordinate that specifies the north-south position of a point on the Earth's surface.";
+  rdfs:label "latitude";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/link> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Thing>;
+  rdfs:comment "A webpage associated with the entity.";
+  rdfs:label "link";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#anyURI> .
+
+<https://data.elsevier.com/schema/edm/logo> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Product>;
+  rdfs:comment "The logo associated with the Product.";
+  rdfs:label "logo";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/longitude> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Location>;
+  rdfs:comment "A geographic coordinate that specifies the east-west position of a point on the Earth's surface.";
+  rdfs:label "longitude";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/modifiedDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The date or time the Work was modified.";
+  rdfs:label "modified date";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/pageRange> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The range of pages the Work occupies within the context of a larger Work.";
+  rdfs:label "page range";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/postOfficeBoxNumber> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/PostalAddress>;
+  rdfs:comment "A uniquely addressable lockable box located on the premises of a post office station included in a postal address.";
+  rdfs:label "post office box number";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/postalAddressLabel> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>,
+    <https://data.elsevier.com/schema/edm/Organization>, <https://data.elsevier.com/schema/edm/Person>;
+  rdfs:comment """The postal address as a single piece of text associated with an entity.
+Use the PostalAddress entity type when the address elements are separated out. See attributes that are linked to PostalAddress.""";
+  rdfs:label "postal address label";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/postalCode> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/PostalAddress>;
+  rdfs:comment "A series of letters, digits or both the specifies a geographic location included in a postal address.";
+  rdfs:label "postal code";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/publishedDate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The date or time the Work was published for the first time.";
+  rdfs:label "published date";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/date> .
+
+<https://data.elsevier.com/schema/edm/reaxysRN> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Substance>;
+  rdfs:comment "The identifier of a compound (Substance) in Reaxys.";
+  rdfs:label "reaxys RN";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/smiles> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Substance>;
+  rdfs:comment "The simplified molecular-input line-entry system (SMILES) is a specification in form of a line notation for describing the structure of chemical species using short ASCII strings.";
+  rdfs:label "SMILES";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/startPage> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The start page of the Work such as an Article or Chapter as part of a larger Work such as a journal Issue or Book.";
+  rdfs:label "start page";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/streetAddress> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/PostalAddress>;
+  rdfs:comment "The location of a building, apartment or other structure on a street or thoroughfare.";
+  rdfs:label "street address";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/locationLabel> .
+
+<https://data.elsevier.com/schema/edm/swissProtId> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/AnatomicalStructure>,
+    <https://data.elsevier.com/schema/edm/DrugTarget>;
+  rdfs:comment "The identifier under which the protein is known in the Swiss-Prot database. Proteins often feature as DrugTargets and data may include the Swiss-Prot identifier.";
+  rdfs:label "Swiss-Prot Id";
+  rdfs:subPropertyOf <https://data.elsevier.com/schema/edm/identifier> .
+
+<https://data.elsevier.com/schema/edm/volume> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Work>;
+  rdfs:comment "The volume of the Work associated with multi-volume Works such as BookSeries or Issue in Journals.";
+  rdfs:label "volume";
+  rdfs:range <http://www.w3.org/2001/XMLSchema#string> .
+
+<https://data.elsevier.com/schema/edm/Affiliation> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A Relationship between two Persons and/or Organizations that indicates a connection that does not include a transfer of entitlements.";
+  rdfs:label "Affiliation";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Relationship> .
+
+<https://data.elsevier.com/schema/edm/Association> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A directional Relationship between two Persons and/or Organizations that indicates a transfer or propagation of entitlements from one to the other.";
+  rdfs:label "Association";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Relationship> .
+
+<https://data.elsevier.com/schema/edm/Author> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of creating or contributing to a Work such as a Book or an Article.";
+  rdfs:label "Author";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/Awardee> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of receiving a Grant Award. This role can be played by an Organization or Person.";
+  rdfs:label "Awardee";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/BookSeries> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A Work comprising a set and/or series of related Books.";
+  rdfs:label "Book Series";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/CarePlan> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A Work describing a care protocol or approach. More specifically, a care plan is a written plan of interprofessional processes of care representing the patient and family's individual needs.";
+  rdfs:label "Care Plan";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/Collaboration> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The action of working together, such as to produce Work(s).";
+  rdfs:label "Collaboration";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Activity> .
+
+<https://data.elsevier.com/schema/edm/Conference> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A gathering of Persons who meet at an arranged place and time in order to discuss or engage in some common interest.";
+  rdfs:label "Conference";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Activity> .
+
+<https://data.elsevier.com/schema/edm/ConferencePaper> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A full-length Article that has been presented at a conference and included in conference proceedings.";
+  rdfs:label "Conference Paper";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/ConferenceContribution> .
+
+<https://data.elsevier.com/schema/edm/ConferenceContribution> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A Work presented at a Conference. It can include synoptic Work like posters and abstracts as well as full-length papers.";
+  rdfs:label "ConferenceContribution";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/ConferencePoster> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A synoptic Work presented at a Conference usually with a printed poster.";
+  rdfs:label "Conference Poster";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/ConferenceContribution> .
+
+<https://data.elsevier.com/schema/edm/ConferenceProceedings> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A collection of Works presented at a conference (or other type of Activity).";
+  rdfs:label "Conference Proceedings";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/Contract> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A written agreement, especially one concerning employment, sales, or tenancy, that is intended to be enforceable by law. Eg: a publishing contract. The contract can be associated with Persons or Organizations, Products, Works and Services may be related to it.";
+  rdfs:label "Contract";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Agreement> .
+
+<https://data.elsevier.com/schema/edm/Course> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A unit of education aimed at fulfilling learning objectives whereby Person(s) acquire some knowledge and understanding of a given Concept.";
+  rdfs:label "Course";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Activity> .
+
+<https://data.elsevier.com/schema/edm/Customer> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of purchasing Products by an Actor.";
+  rdfs:label "Customer";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/DrugDocument> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A work containing information about a drug, its indication, dosing, contraindication and adverse effects. This may include amongst others drug reports, drug monographs and drug approval documents.";
+  rdfs:label "Drug Document";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/Editor> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of selecting selecting and curating material for inclusion in a Work.";
+  rdfs:label "Editor";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/EducationProfessional> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of a Person providing education services and related activities.";
+  rdfs:label "Education Professional";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/EducationProvider> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of an Organization providing education services and related activities.";
+  rdfs:label "Education Provider";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/Funder> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A role that played by an Organisation or Person who provides funding.";
+  rdfs:label "Funder";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/HealthProfessional> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of a Person providing healthcare services and related activities.";
+  rdfs:label "Health Professional";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/HealthProvider> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of an Organization providing healthcare services and related activities.";
+  rdfs:label "Health Provider";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/Issue> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An ordered set of published Articles of a Journal with additional material such as table of contents, advertisements and editorial letters.";
+  rdfs:label "Issue";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/License> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An agreement specifying the conditions of use of Work(s) Product(s) or Service(s) by unnamed Agent(s).";
+  rdfs:label "License";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Agreement> .
+
+<https://data.elsevier.com/schema/edm/MarketingCampaing> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A marketing activity, aimed at a segment of Organizations and Persons, intended to drive awareness, engagement and sales.";
+  rdfs:label "Marketing Campaign";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Activity> .
+
+<https://data.elsevier.com/schema/edm/MedicalGuideline> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A medical guideline is a document with the aim of guiding decisions and includes criteria regarding diagnosis, management, and treatment in specific areas of healthcare.";
+  rdfs:label "Medical Guideline";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/MedicalTest> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A test that may be utilized to help diagnosis, and for monitoring and assessment of medical conditions.";
+  rdfs:label "Medical Test";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/MedicalProcedure> .
+
+<https://data.elsevier.com/schema/edm/Participation> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Actor participating in an Activity.";
+  rdfs:label "Participation";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Relationship> .
+
+<https://data.elsevier.com/schema/edm/Patent> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A document describing an invention which assigns rights to an inventor (Person and/or Organization).";
+  rdfs:label "Patent";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/Patient> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A person receiving or registered to receive medical treatment.";
+  rdfs:label "Patient";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/PatientEducation> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Any materials such as documents, pamphlets or videos aimed at Patients providing information about a medical condition, treatment or drug.";
+  rdfs:label "PatientEducation";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/Project> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An activity involving one or more participants for the sake of researching or achieving a given objective, with a start date (and eventual end date).";
+  rdfs:label "Project";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Activity> .
+
+<https://data.elsevier.com/schema/edm/Publisher> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An Organization or Person engaging in the dissemination of Work.";
+  rdfs:label "Publisher";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/Researcher> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of performing research or working on a research project.";
+  rdfs:label "Researcher";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/Reviewer> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of reviewing a Work.";
+  rdfs:label "Reviewer";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/SoftwareAgent> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A computer program that acts without requiring direct input from humans.";
+  rdfs:label "Software Agent";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Actor> .
+
+<https://data.elsevier.com/schema/edm/Student> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "The function of a Person receiving education services.";
+  rdfs:label "Student";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/Subject> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A function of being the subject or topic of another entity. A Concept can be the topic of a Work.";
+  rdfs:label "Subject";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Relationship> .
+
+<https://data.elsevier.com/schema/edm/User> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "An Actor, typically Person, that interacts with a Service or Product.";
+  rdfs:label "User";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Role> .
+
+<https://data.elsevier.com/schema/edm/WorkingPaper> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A scientific Work that has not undergone peer-review such as a preprint or article that may never be published as an official publication.";
+  rdfs:label "Working Paper";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/checksum> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Dataset>,
+    <https://data.elsevier.com/schema/edm/ResearchData>;
+  rdfs:comment "A checksum of the data following RFC 6920.";
+  rdfs:label "checksum" .
+
+<https://data.elsevier.com/schema/edm/ResearchData> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "Data that is the outcome of research activities that includes research results in a relatively raw form frequently lacking a narrative.";
+  rdfs:label "Research Data";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/duration> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Activity>;
+  rdfs:comment "The duration of an Activity.";
+  rdfs:label "duration" .
+
+<https://data.elsevier.com/schema/edm/issueLabel> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Article>;
+  rdfs:comment "The Article is identifiable as having a particular Issue number or Issue name.";
+  rdfs:label "issue label" .
+
+<https://data.elsevier.com/schema/edm/Article> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A short-form Work on a particular subject or theme. Often intended for publication in a Journal.";
+  rdfs:label "Article";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/partOfISBN> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Chapter>;
+  rdfs:comment "The ISBN of the Book the Chapter is part of. Note: If the entity is a Book use edm:isbn. This attribute provides a shortcut without including the Book as entity associated through the edm:partOf relation.";
+  rdfs:label "part of ISBN" .
+
+<https://data.elsevier.com/schema/edm/Chapter> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A main division of a piece of writing that forms part of a Book and may also be referenced individually.";
+  rdfs:label "Chapter";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<https://data.elsevier.com/schema/edm/partOfISSN> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+  <http://schema.org/domainIncludes> <https://data.elsevier.com/schema/edm/Article>,
+    <https://data.elsevier.com/schema/edm/ConferenceContribution>;
+  rdfs:comment "The ISSN of the Journal the Article, or ConferenceContribution is part of. Note: If the entity is a Journal use edm:issn. This attribute provides a shortcut without including the Journal as entity associated through the edm:partOf relation..";
+  rdfs:label "part of ISSN" .
+
+<https://data.elsevier.com/schema/edm/ClinicalOverview> a <http://www.w3.org/2002/07/owl#Class>;
+  rdfs:comment "A synoptic content document for a disease or condition.";
+  rdfs:subClassOf <https://data.elsevier.com/schema/edm/Work> .
+
+<http://schema.org/category> <http://schema.org/domainIncludes> <http://schema.org/Class>,
+    <http://schema.org/Property> .
+
+<http://schema.org/isPartOf> a <http://www.w3.org/2002/07/owl#AnnotationProperty> .

@@ -1,0 +1,11 @@
+@prefix :<https://data.elsevier.com/lifescience/taxonomy/chembl/bao/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos-core:<http://www.w3.org/2004/02/skos/core#> . 
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . 
+
+ : {
+    :BAOConceptScheme
+        a skos-core:ConceptScheme ;
+        rdfs:label "BAO Concept scheme"@en ;
+        skos-core:prefLabel "BAO Concept scheme"@en .
+}
